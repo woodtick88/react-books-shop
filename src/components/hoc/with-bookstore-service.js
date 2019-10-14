@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import { BookstoreServiceConsumer } from '../bookstore-service-context';
 
 const withBookstoreService = () => {
