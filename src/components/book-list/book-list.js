@@ -10,7 +10,23 @@ import { compose } from '../../utils';
 
 import './book-list.css'
 
-class BookList extends Component {
+const BookList = ({ books }) => {
+    return (
+        <ul className="book-list">
+            {
+                books.map((book) => {
+                    return (
+                        <li key={book.id}>
+                            <BookListItem book={book} />
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    );
+};
+
+class BookListContainer extends Component {
 
     componentDidMount() {
         
@@ -30,22 +46,12 @@ class BookList extends Component {
             return <ErrorIndicator />;
         };
 
-        return (
-            <ul className="book-list">
-                {
-                    books.map((book) => {
-                        return (
-                            <li key={book.id}>
-                                <BookListItem book={book} />
-                            </li>
-                        );
-                    })
-                }
-            </ul>
-        );
+        return <BookList books={ books } />;
+        
     };
 
 };
+
 
 const mapStateToProps = ({ books, loading, error }) => {
     return { books, loading, error };
@@ -62,4 +68,4 @@ const mapDispatchToProps = (dispatch, { bookstoreService }) => {
 export default compose(
     withBookstoreService(),
     connect(mapStateToProps, mapDispatchToProps)
-)(BookList);
+)(BookListContainer);
