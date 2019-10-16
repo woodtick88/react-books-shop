@@ -32,6 +32,14 @@ const fetchBooks = (bookstoreService, dispatch) => () => {
 
 }
 
+const bookAddedToCart = (bookId) => {
+    return {
+        type: 'BOOK_ADDED_TO_CART',
+        payload: bookId
+    };
+};
+
 export {
-    fetchBooks
+    fetchBooks,
+    bookAddedToCart
 };
